@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Reports{% endblock %}
+{% block content %}
+<div class="dashboard-head"><div><span class="eyebrow">REPORT CENTRE</span><h1>Facility <span>reports.</span></h1><p class="muted">Review submitted issues and follow their progress.</p></div>{% if current_role == 'Student' %}<a class="btn btn-primary" href="{{ url_for('new_report') }}">＋ New report</a>{% endif %}</div>
+<div class="filter-bar"><span>Filter status</span><a class="{% if not selected_status %}filter-active{% endif %}" href="{{ url_for('reports') }}">All</a><a class="{% if selected_status=='Pending' %}filter-active{% endif %}" href="{{ url_for('reports', status='Pending') }}">Pending</a><a class="{% if selected_status=='Assigned' %}filter-active{% endif %}" href="{{ url_for('reports', status='Assigned') }}">Assigned</a><a class="{% if selected_status=='Resolved' %}filter-active{% endif %}" href="{{ url_for('reports', status='Resolved') }}">Resolved</a></div>
+<div class="report-list">
+{% for report in reports %}
+<div class="report-row report-row-static"><span class="report-icon peach">▤</span><a class="report-main" href="{{ url_for('report_detail', report_id=report.id) }}"><b>{{ report.issue }}</b><small>{{ report.category }} · {{ report.room }} · {{ report.created_at[:10] }}{% if current_role != 'Student' %} · {{ report.full_name }}{% endif %}</small></a><span class="status status-{{ report.status|lower }}">{{ report.status }}</span>{% if current_role != 'Student' %}<form class="inline-status" method="post" action="{{ url_for('update_status', report_id=report.id) }}"><select name="status" aria-label="Update status">{% for s in ['Pending','Assigned','Resolved'] %}<option {% if report.status == s %}selected{% endif %}>{{ s }}</option>{% endfor %}</select><button class="small-btn" type="submit">Save</button></form>{% endif %}</div>
+{% else %}<div class="empty-state"><div>▤</div><h3>No matching reports</h3><p>Try a different status filter or submit a new report.</p></div>{% endfor %}
+</div>
+{% endblock %}

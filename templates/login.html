@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Log in{% endblock %}
+{% block content %}
+<div class="auth-layout"><div class="auth-side"><span class="eyebrow">WELCOME BACK</span><h1>Your campus,<br><span>well cared for.</span></h1><p>Sign in to submit facility reports or manage existing issues.</p><div class="auth-quote">“A comfortable place to stay starts with a voice that gets heard.”</div></div>
+<div class="form-card"><div class="form-symbol">H</div><h2>Welcome back</h2><p class="muted">Enter your account details to continue.</p>
+<form method="post">
+<label>Username or email</label><input name="identity" required autocomplete="username" placeholder="e.g. student">
+<label>Password</label><input type="password" name="password" required autocomplete="current-password" placeholder="Enter your password">
+<button class="btn btn-primary full" type="submit">Log in <span>→</span></button>
+</form><p class="form-foot">New here? <a href="{{ url_for('register') }}">Create an account</a></p>
+<div class="demo-hint"><b>Demo login</b><br>Student: <code>student</code> / <code>student123</code><br>Technician: <code>technician</code> / <code>tech12345</code></div></div></div>
+{% endblock %}
