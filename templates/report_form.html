@@ -1,16 +1,68 @@
 {% extends "base.html" %}
 {% block title %}New report{% endblock %}
 {% block content %}
-<div class="page-heading"><span class="eyebrow">LET US KNOW</span><h1>Submit a <span>report.</span></h1><p class="muted">Describe the issue clearly so the right team can help.</p></div>
-<div class="report-form-layout"><aside class="form-help"><div class="help-icon">✦</div><h3>A small detail<br>can make a big difference.</h3><p>Include the location and explain what happened. This helps staff understand the issue faster.</p><div class="help-steps"><div><b>01</b><span>Tell us where</span></div><div><b>02</b><span>Describe the issue</span></div><div><b>03</b><span>Track the progress</span></div></div></aside>
-<div class="form-card report-form-card"><form method="post" enctype="multipart/form-data">
-<div class="form-section-title"><span>01</span><div><b>Location & category</b><small>Where should we look?</small></div></div>
-<label>Room number / block</label><input name="room" required placeholder="e.g. B2-2-20">
-<label>Category</label><select name="category" required><option value="">Select a category</option>{% for category in categories %}<option>{{ category }}</option>{% endfor %}</select>
-<div class="form-section-title space-top"><span>02</span><div><b>Issue details</b><small>Help us understand what needs attention.</small></div></div>
-<label>Issue title</label><input name="issue" required maxlength="120" placeholder="e.g. Power socket making noise">
-<label>Report details</label><textarea name="details" required rows="5" placeholder="Explain what happened, where it is, and when you noticed it..."></textarea>
-<label>Attachment name <small>(optional; demo stores the filename only)</small></label><input type="file" name="attachment" accept="image/*,video/*">
-<div class="form-actions"><a class="btn btn-light" href="{{ url_for('dashboard') }}">Cancel</a><button class="btn btn-primary" type="submit">Submit report <span>→</span></button></div>
-</form></div></div>
+<div class="page-heading">
+    <span class="eyebrow">LET US KNOW</span>
+    <h1>Submit a <span>report.</span></h1>
+    <p class="muted">Describe the issue clearly so the right team can help.</p>
+</div>
+
+<div class="report-form-layout">
+    <aside class="form-help">
+        <div class="help-icon">✦</div>
+        <h3>A small detail<br>can make a big difference.</h3>
+        <p>Include the location and explain what happened. This helps staff understand the issue faster.</p>
+        <div class="help-steps">
+            <div><b>01</b><span>Tell us where</span></div>
+            <div><b>02</b><span>Describe the issue</span></div>
+            <div><b>03</b><span>Track the progress</span></div>
+        </div>
+    </aside>
+
+    <div class="form-card report-form-card">
+        <form method="post" enctype="multipart/form-data">
+            
+            <div class="form-section-title">
+                <span>01</span>
+                <div>
+                    <b>Location & category</b>
+                    <small>Where should we look?</small>
+                </div>
+            </div>
+            
+            <label for="room">Room number / block</label>
+            <input id="room" name="room" required maxlength="50" autocomplete="off" placeholder="e.g. B2-2-20">
+            
+            <label for="category">Category</label>
+            <select id="category" name="category" required>
+                <option value="">Select a category</option>
+                {% for category in categories %}
+                    <option value="{{ category }}">{{ category }}</option>
+                {% endfor %}
+            </select>
+            
+            <div class="form-section-title space-top">
+                <span>02</span>
+                <div>
+                    <b>Issue details</b>
+                    <small>Help us understand what needs attention.</small>
+                </div>
+            </div>
+            
+            <label for="issue">Issue title</label>
+            <input id="issue" name="issue" required maxlength="120" placeholder="e.g. Power socket making noise">
+            
+            <label for="details">Report details</label>
+            <textarea id="details" name="details" required maxlength="5000" rows="5" placeholder="Explain what happened, where it is, and when you noticed it..."></textarea>
+            
+            <label for="attachment">Attachment name <small>(optional; demo stores the filename only)</small></label>
+            <input id="attachment" type="file" name="attachment" accept="image/*,video/*">
+            
+            <div class="form-actions">
+                <a class="btn btn-light" href="{{ url_for('dashboard') }}">Cancel</a>
+                <button class="btn btn-primary" type="submit">Submit report <span>&rarr;</span></button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}

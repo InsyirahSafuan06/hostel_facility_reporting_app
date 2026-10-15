@@ -16,7 +16,7 @@ A Flask + HTML + CSS web application based on the supplied Figma mini-project. I
    ```
 4. Install packages:
    ```powershell
-   pip install -r requirements.txt
+   python -m pip install -r requirements.txt
    ```
 5. Start the website:
    ```powershell
@@ -24,7 +24,7 @@ A Flask + HTML + CSS web application based on the supplied Figma mini-project. I
    ```
 6. Open http://127.0.0.1:5000 in your browser.
 
-The SQLite database `hostel_reports.db` is created automatically on first run.
+The SQLite database `hostel_reports.db` is initialized automatically when you run `python app.py`.
 
 ## Demo accounts
 - Student: username `student`, password `student123`
@@ -34,5 +34,8 @@ You can also register a new account. This demo allows role selection during regi
 
 ## Notes
 - The optional attachment currently stores only the uploaded filename, not the file itself. Configure secure upload storage before using this beyond a local demo.
-- Change `SECRET_KEY` before deployment, turn off Flask debug mode in production, add CSRF protection and rate limiting, and use HTTPS.
+- The app limits form requests to 2 MB. Attachments are not persisted.
+- Set a long, random `SECRET_KEY` environment variable for deployments. Without one, the app generates a temporary key when it starts, which invalidates existing sessions after a restart.
+- Debug mode is disabled by default. Set `FLASK_DEBUG=1` only for local development.
+- Add CSRF protection and rate limiting, assign staff roles administratively, and use HTTPS before deployment.
 - This is a coursework starter project, not a production-ready security system.

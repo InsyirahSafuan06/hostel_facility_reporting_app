@@ -1,31 +1,101 @@
 {% extends "base.html" %}
 {% block title %}Welcome{% endblock %}
+
 {% block content %}
+<!-- Hero Section -->
 <section class="hero">
   <div class="hero-copy">
     <span class="eyebrow"><span class="dot"></span> A better hostel experience</span>
     <h1>Small issues.<br><span>Better living.</span></h1>
     <p class="hero-lead">The simple, secure way for PTSS students to report hostel facility issues and follow every update from submission to resolution.</p>
-    <div class="hero-actions"><a class="btn btn-primary" href="{{ url_for('register') }}">Get started <span>↗</span></a><a class="btn btn-light" href="{{ url_for('login') }}">I already have an account</a></div>
-    <div class="trust-row"><span class="avatar-stack"><i>✓</i><i>⌂</i><i>♡</i></span><span>Clear updates · Easy reporting · Better facilities</span></div>
-  </div>
-  <div class="hero-visual">
-    <div class="sun-shape"></div><div class="visual-label">YOUR HOSTEL, WELL CARED FOR</div>
-    <div class="illustration-card">
-      <div class="illustration-top"><span class="mini-logo">H</span><span class="status-pill">● System ready</span></div>
-      <div class="building-art"><div class="roof"></div><div class="building"><div class="building-name">PTSS<br><b>HOSTEL</b></div><div class="windows"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="door"></div></div><div class="plant plant-one">♧</div><div class="plant plant-two">♧</div></div>
-      <div class="visual-bottom"><div><small>REPORT TRACKING</small><b>Every issue matters.</b></div><span class="arrow-bubble">↗</span></div>
+    
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{{ url_for('register') }}">Get started <span>↗</span></a>
+      <a class="btn btn-light" href="{{ url_for('login') }}">I already have an account</a>
     </div>
-    <div class="floating-note"><span class="note-icon">✓</span><div><b>Stay in the loop</b><small>Follow your report status</small></div></div>
-    <div class="floating-number"><b>24/7</b><small>Report anytime</small></div>
+    
+    <div class="trust-row">
+      <span class="avatar-stack"><i>✓</i><i>⌂</i><i>♡</i></span>
+      <span>Clear updates · Easy reporting · Better facilities</span>
+    </div>
+  </div>
+
+  <!-- Hero Visual Elements & Graphic Art -->
+  <div class="hero-visual">
+    <div class="sun-shape"></div>
+    <div class="visual-label">YOUR HOSTEL, WELL CARED FOR</div>
+    
+    <div class="illustration-card">
+      <div class="illustration-top">
+        <span class="mini-logo">H</span>
+        <span class="status-pill">● System ready</span>
+      </div>
+      
+      <!-- CSS Building Graphic Layout -->
+      <div class="building-art">
+        <div class="roof"></div>
+        <div class="building">
+          <div class="building-name">PTSS<br><b>HOSTEL</b></div>
+          <div class="windows">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <div class="door"></div>
+        </div>
+        <div class="plant plant-one">♧</div>
+        <div class="plant plant-two">♧</div>
+      </div>
+      
+      <div class="visual-bottom">
+        <div>
+          <small>REPORT TRACKING</small>
+          <b>Every issue matters.</b>
+        </div>
+        <span class="arrow-bubble">↗</span>
+      </div>
+    </div>
+    
+    <!-- Floating Content Badges -->
+    <div class="floating-note">
+      <span class="note-icon">✓</span>
+      <div>
+        <b>Stay in the loop</b>
+        <small>Follow your report status</small>
+      </div>
+    </div>
+    
+    <div class="floating-number">
+      <b>24/7</b>
+      <small>Report anytime</small>
+    </div>
   </div>
 </section>
+
+<!-- Feature Section Grid -->
 <section class="feature-section">
-  <div class="section-heading"><span class="eyebrow">MADE FOR CAMPUS LIFE</span><h2>Facility reporting, <span>made simple.</span></h2><p>Less chasing. More clarity. A better way to keep your hostel in good condition.</p></div>
+  <div class="section-heading">
+    <span class="eyebrow">MADE FOR CAMPUS LIFE</span>
+    <h2>Facility reporting, <span>made simple.</span></h2>
+    <p>Less chasing. More clarity. A better way to keep your hostel in good condition.</p>
+  </div>
+  
   <div class="feature-grid">
-    <article class="feature-card"><span class="feature-icon peach">↗</span><h3>Report in minutes</h3><p>Tell us the room, category and issue details in one easy form.</p></article>
-    <article class="feature-card"><span class="feature-icon blue">◷</span><h3>Track progress</h3><p>Check whether a report is pending, assigned or resolved.</p></article>
-    <article class="feature-card"><span class="feature-icon green">♡</span><h3>Better communication</h3><p>Students and staff can see the same clear report information.</p></article>
+    <article class="feature-card">
+      <span class="feature-icon peach">↗</span>
+      <h3>Report in minutes</h3>
+      <p>Tell us the room, category and issue details in one easy form.</p>
+    </article>
+    
+    <article class="feature-card">
+      <span class="feature-icon blue">◷</span>
+      <h3>Track progress</h3>
+      <p>Check whether a report is pending, assigned or resolved.</p>
+    </article>
+    
+    <article class="feature-card">
+      <span class="feature-icon green">♡</span>
+      <h3>Better communication</h3>
+      <p>Students and staff can see the same clear report information.</p>
+    </article>
   </div>
 </section>
 {% endblock %}

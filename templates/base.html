@@ -1,32 +1,50 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}HostelCare{% endblock %} · PTSS</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} - HostelCare</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-<header class="topbar">
-  <a class="brand" href="{{ url_for('index') }}"><span class="brand-mark">H</span><span>Hostel<span class="brand-accent">Care</span><small>PTSS facility reporting</small></span></a>
-  <nav>
+    
     {% if session.get('user_id') %}
-      <a href="{{ url_for('dashboard') }}">Dashboard</a>
-      <a href="{{ url_for('reports') }}">Reports</a>
-      <a class="nav-cta" href="{{ url_for('new_report') }}">+ New report</a>
-      <a href="{{ url_for('logout') }}">Log out</a>
-    {% else %}
-      <a href="{{ url_for('login') }}">Log in</a>
-      <a class="nav-cta" href="{{ url_for('register') }}">Create account</a>
+    <nav class="app-navbar">
+        <div class="nav-container">
+            <a class="nav-brand" href="{{ url_for('dashboard') }}">HostelCare</a>
+            <div class="nav-links">
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('reports') }}">All Reports</a>
+                {% if current_role == 'Student' %}
+                <a href="{{ url_for('new_report') }}" class="nav-btn">+ New Report</a>
+                {% endif %}
+                <div class="user-badge">
+                    <span>{{ current_user }} (<b>{{ current_role }}</b>)</span>
+                    <form method="post" action="{{ url_for('logout') }}">
+                        <button type="submit" class="logout-link">Logout</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
     {% endif %}
-  </nav>
-</header>
-<main class="page-shell">
-  {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}<div class="flash-stack">{% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}
-  {% endwith %}
-  {% block content %}{% endblock %}
-</main>
-<footer class="footer"><span>© 2026 HostelCare · Tuanku Syed Sirajuddin Polytechnic</span><span>Report it. Track it. Resolve it.</span></footer>
+
+    <!-- Global Framework Notifications Panel -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-container">
+          {% for category, message in messages %}
+            <div class="flash flash-{{ category if category != 'error' else 'danger' }}" role="status">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
 </body>
 </html>
